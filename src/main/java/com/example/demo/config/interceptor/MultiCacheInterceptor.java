@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.config.interceptor;
 
 import com.hazelcast.spring.cache.HazelcastCache;
 import org.slf4j.Logger;

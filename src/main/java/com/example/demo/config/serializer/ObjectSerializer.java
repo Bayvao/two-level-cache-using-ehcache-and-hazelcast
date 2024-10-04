@@ -1,26 +1,24 @@
-package com.example.demo.config;
+package com.example.demo.config.serializer;
 
-import com.example.demo.model.Employee;
-import com.example.demo.model.KYCCommQstView;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hazelcast.nio.serialization.ByteArraySerializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.IOException;
+import java.io.*;
 
-public class EmployeeSerializer implements ByteArraySerializer<Employee> {
+public class ObjectSerializer implements ByteArraySerializer<Object> {
 
-    private static final Logger LOG = LoggerFactory.getLogger(EmployeeSerializer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(ObjectSerializer.class);
     private final ObjectMapper objectMapper;
 
-    public EmployeeSerializer(ObjectMapper objectMapper) {
+    public ObjectSerializer(ObjectMapper objectMapper) {
         this.objectMapper = objectMapper;
     }
 
 
     @Override
-    public byte[] write(Employee object) throws IOException {
+    public byte[] write(Object object) throws IOException {
         try {
             LOG.info("Serializing data to bytes");
             return objectMapper.writeValueAsBytes(object);
@@ -30,11 +28,11 @@ public class EmployeeSerializer implements ByteArraySerializer<Employee> {
     }
 
     @Override
-    public Employee read(byte[] bytes) throws IOException {
+    public Object read(byte[] bytes) throws IOException {
         LOG.info("DeSerializing data from bytes");
 
         try {
-           return objectMapper.readValue(bytes, Employee.class);
+           return objectMapper.readValue(bytes, Object.class);
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -43,6 +41,6 @@ public class EmployeeSerializer implements ByteArraySerializer<Employee> {
 
     @Override
     public int getTypeId() {
-        return 10;
+        return 2;
     }
 }

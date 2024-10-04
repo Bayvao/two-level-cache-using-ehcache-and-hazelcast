@@ -1,4 +1,4 @@
-package com.example.demo.config;
+package com.example.demo.config.logger;
 
 
 import org.ehcache.event.CacheEvent;
