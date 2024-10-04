@@ -1,4 +1,4 @@
-                            **Two-Level Cache using Ehcache and Hazelcast **
+**Two-Level Cache using Ehcache and Hazelcast**
 
 This project contains demo code for implementing a two level cache using Ehcache and Hazelcast.
 
