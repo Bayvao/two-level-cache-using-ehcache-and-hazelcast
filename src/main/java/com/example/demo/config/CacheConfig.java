@@ -13,7 +13,10 @@ import com.hazelcast.spring.cache.HazelcastCacheManager;
 import org.ehcache.jsr107.EhcacheCachingProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.AnnotationCacheOperationSource;
 import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.interceptor.CacheInterceptor;
+import org.springframework.cache.interceptor.CacheOperationSource;
 import org.springframework.cache.jcache.JCacheCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -98,17 +101,17 @@ public class CacheConfig {
         return HazelcastClient.newHazelcastClient(clientConfig);
     }
 
-//    @Bean
-//    public CacheInterceptor cacheInterceptor(org.springframework.cache.CacheManager ehCacheManager,
-//                                             CacheOperationSource cacheOperationSource) {
-//        CacheInterceptor interceptor = new MultiCacheInterceptor(ehCacheManager);
-//        interceptor.setCacheOperationSources(cacheOperationSource);
-//        return interceptor;
-//    }
-//
-//    @Bean
-//    public CacheOperationSource cacheOperationSource() {
-//        return new AnnotationCacheOperationSource();
-//    }
+    @Bean
+    public CacheInterceptor cacheInterceptor(org.springframework.cache.CacheManager ehCacheManager,
+                                             CacheOperationSource cacheOperationSource) {
+        CacheInterceptor interceptor = new MultiCacheInterceptor(ehCacheManager);
+        interceptor.setCacheOperationSources(cacheOperationSource);
+        return interceptor;
+    }
+
+    @Bean
+    public CacheOperationSource cacheOperationSource() {
+        return new AnnotationCacheOperationSource();
+    }
 
 }

@@ -46,7 +46,7 @@ public class NumberService {
     }
 
     @Caching(cacheable = {
-           // @Cacheable(cacheNames = "employeeCache", cacheManager = "ehCacheManager", key = "#id"),
+            @Cacheable(cacheNames = "employeeCache", cacheManager = "ehCacheManager", key = "#id"),
             @Cacheable(cacheNames = "employeeCache", cacheManager = "hazelcastCacheManager", key = "#id")
     })
     public Employee getEmployee(int id) {
