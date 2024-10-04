@@ -1,0 +1,21 @@
+<hazelcast xmlns="http://www.hazelcast.com/schema/config">
+    <map name="employeeCache">
+        <eviction size="1" max-size-policy="PER_PARTITION" eviction-policy="LRU" />
+        <time-to-live-seconds>100</time-to-live-seconds>
+    </map>
+
+    <map name="comQstCache">
+        <eviction size="1" max-size-policy="PER_PARTITION" eviction-policy="LRU" />
+        <time-to-live-seconds>100</time-to-live-seconds>
+    </map>
+    <serialization>
+        <enable-compression>true</enable-compression>
+<!--        <serializers>-->
+<!--            <serializer type-class="Employee" class-name="EmployeeSerializer" />-->
+<!--        </serializers>-->
+    </serialization>
+<!--    <serialization>-->
+<!--        <allow-override-default-serializers>true</allow-override-default-serializers>-->
+<!--    </serialization>-->
+
+</hazelcast>
